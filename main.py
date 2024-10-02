@@ -42,19 +42,18 @@ while True:
         action_point = (math.floor((point[4].x+point[8].x)/2*width),math.floor((point[4].y+point[8].y)/2*height))
                 
         if action:
-             cv2.circle(frame,action_point,5,(0,0,255),-1)
-             board[action_point[0]][action_point[1]] = n
-             lst[n]=action_point
-             n=n+1
-        for i in range(1,n):
-             start = lst[i]
-             end = lst[i+1] if lst[i+1] != 0 else lst[i]
-             print(start,end)
-             cv2.line(frame,start,end,(0,0,255),5)
-             
-    
-    
-    
+                cv2.circle(frame,action_point,5,(0,0,255),-1)
+                board[action_point[0]][action_point[1]] = n
+                lst[n]=action_point
+                n=n+1
+    for i in range(1,n):
+            start = lst[i]
+            end = lst[i+1] if lst[i+1] != 0 else lst[i]
+            print(start,end)
+            cv2.line(frame,start,end,(0,0,255),5)
+    if cv2.waitKey(1) & 0xFF == ord('r'):
+         lst = [0 for _ in range(width*height+1)]
+
     
     cv2.imshow('Hand Tracking', frame)
 
